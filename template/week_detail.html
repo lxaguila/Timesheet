@@ -1,0 +1,61 @@
+
+{% extends "base.html" %}
+
+{% block h1 %} {{name}} {% endblock %}
+
+{% block content %}
+
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 col-md-8 col-xl-6">
+
+                    <table class="table table-bordered">
+
+                        <th>Start date</th>
+                        <th>Check - in</th>
+                        <th>Check - out</th>
+                        <th>Total Hours</th>
+                        <th>Action</th>
+                            {% for day in days_in_week %}
+
+                        <form method="post", action="{% url 'report:view_day_delete' day.id week_id%}">
+                            {% csrf_token %}
+                         <input type="hidden", name="day.id", value="{{ day.id }}"/>
+                        <tr>
+                            <td style="cursor:pointer" onclick="location.href='/report/day/{{day.pk}}/{{ week_id }}/'">{{ day.start_date|date:"D M d" }}</td>
+                            <td style="cursor:pointer" onclick="location.href='/report/day/{{day.pk}}/{{ week_id }}/'">{{ day.start_time }}</td>
+                            <td style="cursor:pointer" onclick="location.href='/report/day/{{day.pk}}/{{ week_id }}/'">{{ day.end_time }}</td>
+                            <td style="cursor:pointer" onclick="location.href='/report/day/{{day.pk}}/{{ week_id }}/'">{{ day.hours_worked }}</td>
+                            <td >
+                                <button type="submit", class="btn btn-default btn-s", id="ButtonDelete">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                            </td>
+                        </tr>
+                        </form>
+
+                            {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-xs-4 col-md-2">Total Hours: {{ hours }}</div>
+
+                <div class="col-xs-4 col-md-2">Comments: {{ comments }}</div>
+
+            </div>
+
+<script>
+document.onload=enableAddDay({{ week_id }})
+function enableAddDay(week_id){
+document.getElementById("button_add_day").disabled = false;
+document.getElementById("button_add_day_href").href = "/report/day/add/{{ week_id }}"
+}
+</script>
+
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block h1 %}Login{% endblock %}
+
+
+{% block content %}
+
+<div>
+
+    <form class = "form-horizontal" action = "" method="post" name="authenticate">
+        {% csrf_token %}
+
+        {% for field in form %}
+
+            <span>{{ field.errors }}</span>
+            <div>{{ field }}</div>
+            <br>
+
+        {% endfor %}
+        <br>
+        <button type="submit">Submit</button>
+        <br>
+    </form>
+
+</div>
+
+
+
+{% endblock %}

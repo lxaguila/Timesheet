@@ -1,0 +1,27 @@
+
+body {
+    padding-top: 45px;
+    padding-bottom: 55px;
+     background: LIGHTCYAN !important;
+}
+
+.form-control {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.ui-timepicker-select {
+    margin-bottom: 10px !important;
+    height:30px !important;
+}
+
+.navbar {
+    padding: 0px;
+    margin-bottom: 0px !important;
+}
+
+.navbar-btn {
+    margin-right: 12px;
+    margin-left: 12px;
+
+    }

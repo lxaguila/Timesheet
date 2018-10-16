@@ -1,0 +1,66 @@
+
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block h1 %}Add/Change a Day{% endblock %}
+
+
+{% block script %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.3.5/jquery.timepicker.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+    <form action = "" method="post" name="createday">
+        {% csrf_token %}
+
+        {% for field in form %}
+
+        <span>{{ field.errors }}</span>
+
+        <div class="row">
+            <div class="col-xs-4 col-sm-2">{{ field.label_tag }}</div>
+            <div class="col-xs-8 col-sm-8">{{ field }}</div>
+        </div>
+        {% endfor %}
+
+        <div class="row">
+
+            <div class="col">
+                <div class="col-xs-1 col-xs-offset-4"><button type="submit" class="btn btn-primary">Save</button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+<script>
+    $( "#datepicker" ).datepicker({
+    disableTouchKeyboard: true,
+    Readonly: true}).attr("readonly", "readonly");
+</script>
+
+<script>
+    $('#timepicker').timepicker({ 'step': 15,
+    'disableTextInput': true,
+    'forceRoundTime': true,
+    'useSelect': true,
+    'disableTouchKeyboard': true});
+</script>
+
+<script>
+    $('#timepicker1').timepicker({ 'step': 15,
+    'disableTextInput': true,
+    'forceRoundTime': true,
+    'useSelect': true,
+    'disableTouchKeyboard': true});
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/static/stylesheet.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    {% block script %}{% endblock %}
+
+    <head>
+
+
+        <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header pull-left">
+                    <a href="/report/" role="button"><button type="button" class="btn btn-default navbar-btn">Home</a>
+                </div>
+                <div class="navbar-header pull-right">
+                    <a href="/report/week/add/" role="button"><button type="button" class="btn btn-default navbar-btn">ADD Week </button></a>
+                    <a href="#" id="button_add_day_href" role="button"><button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day">ADD Day </button></a>
+                </div>
+
+
+            </div>
+        </nav>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+
+
+            <h2>{% block h1 %}{% endblock %}</h2>
+
+            {% block content %}{% endblock %}
+
+            {% block footer %}{% endblock %}
+
+            <nav class="navbar navbar-dark bg-primary navbar-fixed-bottom">
+                <div class="container">
+                    <div class="navbar-header pull-left">
+                          <span class="navbar-text">Weekly report</span>
+                    </div>
+                    <div class="navbar-header pull-left">
+                          <span class="navbar-text">-</span>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+    </body>
+</html>
