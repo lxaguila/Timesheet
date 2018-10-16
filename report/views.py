@@ -105,14 +105,14 @@ class WeekListView(generic.ListView):
 
 class CreateWeek(CreateView):
     model = weekly_report
-    fields = ['name', 'sent', 'total_miscelaneous', 'comments']
+    fields = ['name', 'sent', 'miscelaneous', 'comments']
 
     def get_form(self, form_class=None):
         form = super(CreateWeek, self).get_form()
         form.fields['name'].widget.attrs.update({'id': 'datepicker', 'autocomplete': 'off', 'class': 'form-control'})
-        form.fields['sent'].widget.attrs.update({'id': 'datepicker', 'class': 'form-control'})
-        form.fields['total_miscelaneous'].widget.attrs.update({'id': 'timepicker', 'class': 'form-control'})
-        form.fields['comments'].widget.attrs.update({'id': 'timepicker1', 'class': 'form-control'})
+        form.fields['sent'].widget.attrs.update({'class': 'form-control', 'id': 'check_week'})
+        form.fields['miscelaneous'].widget.attrs.update({'class': 'form-control'})
+        form.fields['comments'].widget.attrs.update({'class': 'form-control'})
         return form
 
 
@@ -123,7 +123,7 @@ class DeleteWeek(DeleteView):
 
 class UpdateWeek(UpdateView):
     model = weekly_report
-    fields = ['name', 'sent', 'total_hours', 'total_miscelaneous', 'comments']
+    fields = ['name', 'sent', 'total_hours', 'miscelaneous', 'comments']
 
 
 def WeekDetailView(request, pk):
@@ -137,7 +137,7 @@ def WeekDetailView(request, pk):
         name = item.name
         sent = item.sent
         week_id = item.id
-        total_miscelaneous = item.total_miscelaneous
+        miscelaneous = item.miscelaneous
         comments = item.comments
 
     for day in days_in_week:
@@ -147,5 +147,5 @@ def WeekDetailView(request, pk):
     updated_hours.total_hours = hours
     updated_hours.save()
 
-    context = {'week':week, 'comments':comments, 'total_miscelaneous': total_miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+    context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
     return render(request, 'week_detail.html', context)

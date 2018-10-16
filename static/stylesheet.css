@@ -2,12 +2,12 @@
 body {
     padding-top: 45px;
     padding-bottom: 55px;
-     background: LIGHTCYAN !important;
+    background: LIGHTCYAN !important;
 }
 
 .form-control {
     padding: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .ui-timepicker-select {
@@ -21,7 +21,15 @@ body {
 }
 
 .navbar-btn {
-    margin-right: 12px;
-    margin-left: 12px;
+    margin-right: 4px;
+    margin-left: 4px;
+    width: 150px; !important
 
     }
+
+#check_week {
+    border: 0px;
+    box-shadow: 0px;
+
+
+}
