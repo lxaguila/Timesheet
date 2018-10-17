@@ -129,7 +129,15 @@ class DeleteWeek(DeleteView):
 
 class UpdateWeek(UpdateView):
     model = weekly_report
-    fields = ['name', 'sent', 'total_hours', 'miscelaneous', 'comments']
+    fields = ['name', 'sent', 'miscelaneous', 'comments']
+
+    def get_form(self, form_class=None):
+        form = super(UpdateWeek, self).get_form()
+        form.fields['name'].widget.attrs.update({'id': 'datepicker', 'autocomplete': 'off', 'class': 'form-control'})
+        form.fields['sent'].widget.attrs.update({'class': 'form-control', 'id': 'check_week'})
+        form.fields['miscelaneous'].widget.attrs.update({'class': 'form-control'})
+        form.fields['comments'].widget.attrs.update({'class': 'form-control'})
+        return form
 
     def get_queryset(self):
         return weekly_report.objects.filter(author=self.request.user)
