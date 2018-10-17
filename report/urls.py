@@ -9,6 +9,7 @@ app_name = 'report'
 urlpatterns = [
 
     url(r'^$', login_required(views.WeekListView.as_view()), name='view_weeks'),
+url(r'^week/$', login_required(views.WeekListView.as_view()), name='view_weeks_1'),
     url('^authenticate/$', views.UserFormView.as_view(), name='view_authenticate'),
     url('^day/add/(?P<pk>[0-9]+)$', login_required(views.CreateDay.as_view()), name = 'view_day_add'),
     url('^day/(?P<pk>[0-9]+)/delete/(?P<week>[0-9]+)/$', login_required(views.DeleteDay.as_view()), name = 'view_day_delete'),
