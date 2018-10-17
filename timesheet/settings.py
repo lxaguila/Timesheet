@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'n4-ygqz_z9ky1xvbo0+19*z3l+w_%9mew@r$#hw4lfntx=a#4a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [u'192.168.0.9', u'127.0.0.1']
 
@@ -126,4 +126,5 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_URL = "/report/authenticate/"
+
 

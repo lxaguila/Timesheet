@@ -1,6 +1,8 @@
 from django.conf.urls import url
 from django.contrib.auth.decorators import login_required
 from . import views
+from django.contrib.auth.views import logout
+from django.conf import settings
 
 app_name = 'report'
 
@@ -15,6 +17,9 @@ urlpatterns = [
     url('^week/add/$', login_required(views.CreateWeek.as_view()), name='view_week_add'),
     url('^week/(?P<pk>[0-9]+)/delete/$', login_required(views.DeleteWeek.as_view()), name='view_week_delete'),
     url('^week/(?P<pk>[0-9]+)/$', login_required(views.WeekDetailView), name='view_week_update'),
+    url('^week/(?P<pk>[0-9]+)/update/$', login_required(views.UpdateWeek.as_view()), name='view_week_update'),
+
+    url(r'^signout/$', logout, {'next_page': settings.LOGIN_URL}, name='logout')
 
 
     ]

@@ -48,14 +48,14 @@
 
             </div>
 
-<script>
+<script type="text/javascript">
 document.onload=enableAddDay({{ week_id }})
+
 function enableAddDay(week_id){
 document.getElementById("button_add_day").disabled = false;
-document.getElementById("button_add_day_href").href = "/report/day/add/{{ week_id }}"
+document.getElementById("button_add_day_href").href = "/report/day/add/{{ week_id }}";
+
 }
 </script>
-
-
 
 {% endblock %}

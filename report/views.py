@@ -5,26 +5,20 @@ from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from .models import daily_log, weekly_report
 from .forms import UserForm
-from django.shortcuts import HttpResponseRedirect, get_list_or_404
+from django.shortcuts import HttpResponseRedirect, HttpResponse
+from django.http import Http404
 
 
 class CreateDay(CreateView):
 
     model = daily_log
-    fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'week', 'comments']
-
-    def get_initial(self):
-        print(self.kwargs['pk'])
-        initial = super(CreateDay, self).get_initial()
-        initial['week'] = self.kwargs['pk']
-        return initial
+    fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'comments']
 
     def get_form(self, form_class=None):
         form = super(CreateDay, self).get_form()
         form.fields['start_date'].widget.attrs.update({'id': 'datepicker', 'class': 'form-control'})
         form.fields['start_time'].widget.attrs.update({'id': 'timepicker', 'class': 'form-control'})
         form.fields['end_time'].widget.attrs.update({'id': 'timepicker1', 'class': 'form-control'})
-        form.fields['week'].widget.attrs.update({'id': 'selectweek', 'class': 'form-control'})
         form.fields['lunch_time'].widget.attrs.update({'class': 'form-control'})
         form.fields['travel_time'].widget.attrs.update({'class': 'form-control'})
         form.fields['extra_time'].widget.attrs.update({'class': 'form-control'})
@@ -32,6 +26,9 @@ class CreateDay(CreateView):
         return form
 
     def form_valid(self, form):
+        pk = int(self.kwargs['pk'])
+        print(pk)
+        form.instance.week_id = pk
         return_url = '/report/week/' + self.kwargs['pk']
         self.object = form.save()
         return HttpResponseRedirect(return_url)
@@ -39,14 +36,20 @@ class CreateDay(CreateView):
 
 class UpdateDay(UpdateView):
     model = daily_log
-    fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'week', 'comments']
+    fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'comments']
+
+    def get_queryset(self):
+        user_id = weekly_report.objects.filter(author=self.request.user)
+        id = (user_id.values_list('id', flat=True)[0])
+        return daily_log.objects.filter(week=id)
+
+
 
     def get_form(self, form_class=None):
         form = super(UpdateView, self).get_form()
         form.fields['start_date'].widget.attrs.update({'id': 'datepicker', 'class': 'form-control'})
         form.fields['start_time'].widget.attrs.update({'id': 'timepicker', 'class': 'form-control'})
         form.fields['end_time'].widget.attrs.update({'id': 'timepicker1', 'class': 'form-control'})
-        form.fields['week'].widget.attrs.update({'id': 'selectweek', 'class': 'form-control'})
         form.fields['lunch_time'].widget.attrs.update({'class': 'form-control'})
         form.fields['travel_time'].widget.attrs.update({'class': 'form-control'})
         form.fields['extra_time'].widget.attrs.update({'class': 'form-control'})
@@ -54,9 +57,11 @@ class UpdateDay(UpdateView):
         return form
 
     def form_valid(self, form):
+
         return_url = '/report/week/' + self.kwargs['week']
         self.object = form.save()
         return HttpResponseRedirect(return_url)
+
 
 class DeleteDay(DeleteView):
     model = daily_log
@@ -81,17 +86,14 @@ class UserFormView(generic.View):
 
         form = self.form_class(request.POST)
         if form.is_valid():
-            #user = form.save(commit=False)
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            #user.set_password(password)
-            #user.save()
             user = authenticate(username=username, password=password)
 
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('report:view_home')
+                    return redirect('report:view_weeks')
 
         return render(request, self.template_name, {'form': form})
 
@@ -100,7 +102,7 @@ class WeekListView(generic.ListView):
     template_name = 'week.html'
 
     def get_queryset(self):
-        return weekly_report.objects.all()
+        return weekly_report.objects.filter(author=self.request.user)
 
 
 class CreateWeek(CreateView):
@@ -115,6 +117,10 @@ class CreateWeek(CreateView):
         form.fields['comments'].widget.attrs.update({'class': 'form-control'})
         return form
 
+    def form_valid(self, form):
+         user_id = self.request.user
+         form.instance.author = user_id
+         return super(CreateWeek, self).form_valid(form)
 
 class DeleteWeek(DeleteView):
     model = weekly_report
@@ -125,27 +131,36 @@ class UpdateWeek(UpdateView):
     model = weekly_report
     fields = ['name', 'sent', 'total_hours', 'miscelaneous', 'comments']
 
+    def get_queryset(self):
+        return weekly_report.objects.filter(author=self.request.user)
+
 
 def WeekDetailView(request, pk):
 
     hours = 0
 
-    week = weekly_report.objects.filter(id=pk)
-    days_in_week = daily_log.objects.filter(week=pk)
+    week = weekly_report.objects.filter(id=pk, author=request.user)
 
-    for item in week:
-        name = item.name
-        sent = item.sent
-        week_id = item.id
-        miscelaneous = item.miscelaneous
-        comments = item.comments
+    if week:
 
-    for day in days_in_week:
-        hours += day.hours_worked
+        days_in_week = daily_log.objects.filter(week=pk)
 
-    updated_hours = weekly_report.objects.get(id=pk)
-    updated_hours.total_hours = hours
-    updated_hours.save()
+        for item in week:
+            name = item.name
+            sent = item.sent
+            week_id = item.id
+            miscelaneous = item.miscelaneous
+            comments = item.comments
 
-    context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
-    return render(request, 'week_detail.html', context)
+        for day in days_in_week:
+            hours += day.hours_worked
+
+        updated_hours = weekly_report.objects.get(id=pk)
+        updated_hours.total_hours = hours
+        updated_hours.save()
+
+        context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        return render(request, 'week_detail.html', context)
+
+    else:
+        raise Http404()

@@ -4,9 +4,11 @@ from django.utils.timezone import now
 from django.db import models
 from django.core.urlresolvers import reverse
 from datetime import datetime
+from django.contrib.auth.models import User
 
 
 class weekly_report(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     sent = models.BooleanField(default=False)
     total_hours = models.FloatField(default='0')

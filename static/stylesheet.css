@@ -23,9 +23,16 @@ body {
 .navbar-btn {
     margin-right: 4px;
     margin-left: 4px;
-    width: 150px; !important
+    width: 90px !important;
 
     }
+
+
+.navbar-text{
+    margin-left: 4px;
+    font-size: 20px;
+
+}
 
 #check_week {
     border: 0px;
