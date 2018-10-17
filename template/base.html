@@ -23,10 +23,10 @@
             <div class="container">
 
                 <div class="navbar-header pull-left">
-                    <a href="/report/" role="button"><button type="button" class="btn btn-default navbar-btn">Home</a>
+                    <a href="/report/" role="button"><button onclick="location.href='/report/'" type="button" class="btn btn-default navbar-btn">Home</a>
                 </div>
                 <div class="navbar-header pull-right">
-                    <a href="/report/week/add/" role="button"><button type="button" class="btn btn-default navbar-btn">ADD Week</a>
+                    <a href="/report/week/add/" role="button"><button onclick="location.href='/report/week/add/'" type="button" class="btn btn-default navbar-btn">ADD Week</a>
                     <button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day"><a href="#" id="button_add_day_href" role="button">ADD Day</a></button>
                 </div>
 
@@ -54,7 +54,7 @@
                           <span class="navbar-text">Welcome: {{ user.get_username }}</span>
                     </div>
                     <div class="navbar-header pull-right">
-                          <a href="/report/signout" role="button"><button type="button" class="btn btn-default navbar-btn">Logout</a>
+                          <a href="/report/signout" role="button"><button type="button" onclick="location.href='/report/signout'" class="btn btn-default navbar-btn">Logout</a>
                     </div>
                 </div>
             </nav>

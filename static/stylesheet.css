@@ -5,6 +5,12 @@ body {
     background: LIGHTCYAN !important;
 }
 
+a {
+    padding-top: 4px;
+    padding-bottom: 5px;
+
+}
+
 .form-control {
     padding: 5px;
     margin-bottom: 10px !important;
