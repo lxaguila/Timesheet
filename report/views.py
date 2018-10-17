@@ -134,6 +134,11 @@ class UpdateWeek(UpdateView):
     def get_queryset(self):
         return weekly_report.objects.filter(author=self.request.user)
 
+    def form_valid(self, form):
+        return_url = '/report/week/' + self.kwargs['pk']
+        self.object = form.save()
+        return HttpResponseRedirect(return_url)
+
 
 def WeekDetailView(request, pk):
 

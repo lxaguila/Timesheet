@@ -27,6 +27,12 @@ body {
 
     }
 
+.btn-primary{
+
+    width: 80px !important;
+
+}
+
 
 .navbar-text{
     margin-left: 4px;
