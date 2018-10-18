@@ -30,7 +30,7 @@ class CreateDay(CreateView):
     def form_valid(self, form):
         pk = int(self.kwargs['pk'])
         form.instance.week_id = pk
-        return_url = '/report/week/' + pk
+        return_url = '/report/week/' + str(pk)
         self.object = form.save()
         return HttpResponseRedirect(return_url)
 
