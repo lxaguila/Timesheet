@@ -5,8 +5,10 @@ from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from .models import daily_log, weekly_report
 from .forms import UserForm
-from django.shortcuts import HttpResponseRedirect, HttpResponse
+from django.shortcuts import HttpResponseRedirect
 from django.http import Http404
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 
 
 class CreateDay(CreateView):
@@ -27,9 +29,8 @@ class CreateDay(CreateView):
 
     def form_valid(self, form):
         pk = int(self.kwargs['pk'])
-        print(pk)
         form.instance.week_id = pk
-        return_url = '/report/week/' + self.kwargs['pk']
+        return_url = '/report/week/' + pk
         self.object = form.save()
         return HttpResponseRedirect(return_url)
 
@@ -73,29 +74,19 @@ class DeleteDay(DeleteView):
         return HttpResponseRedirect(return_url)
 
 
-class UserFormView(generic.View):
-    form_class = UserForm
-    template_name = 'registration_form.html'
-
-    def get(self, request):
-        form = self.form_class(None)
-        return render(request, self.template_name, {'form':form})
-
-
-    def post(self, request):
-
-        form = self.form_class(request.POST)
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(username=username, password=password)
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return redirect('report:view_weeks')
-
-        return render(request, self.template_name, {'form': form})
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('/report/')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
 
 
 class WeekListView(generic.ListView):
@@ -122,8 +113,12 @@ class CreateWeek(CreateView):
          form.instance.author = user_id
          return super(CreateWeek, self).form_valid(form)
 
+
 class DeleteWeek(DeleteView):
-    model = weekly_report
+
+    def get_queryset(self):
+        return weekly_report.objects.filter(author=self.request.user)
+
     success_url = reverse_lazy('report:view_weeks')
 
 

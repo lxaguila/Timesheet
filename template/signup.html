@@ -1,3 +1,6 @@
+
+
+
 {% extends "base.html" %}
 
 {% load staticfiles %}
@@ -5,23 +8,21 @@
 {% block h1 %}
 <div class="row">
     <div class="col-xs-4 col-xs-offset-4">
-Login
+Signup
     </div>
 </div>
 {% endblock %}
 
 {% block content %}
 
-<div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
             <form class = "form-horizontal" action = "" method="post" name="authenticate">
                 {% csrf_token %}
 
                 {% for field in form %}
 
                     <span>{{ field.errors }}</span>
-                <span>{{ field.label_tag }}</span>
-                    <div>{{ form.as_p }}</div>
+                    <div>{{ field.label_tag }}</div>
+                    <div>{{ field }}</div>
                     <br>
 
                 {% endfor %}
@@ -33,17 +34,19 @@ Login
             <script type="text/javascript">
                 (function ($) {
                 $(document).ready(function(){
-                $(".navbar").hide();
+                $(".navbar-fixed-top").hide();
+                $("a#a_navbar_bottom").text("Login");
+                $("a#a_navbar_bottom").attr("href", "/report/login/");
+
                 });
                 }(jQuery));
 
-                document.onload=autocap()
+                document.ready=autocap()
                 function autocap(){
                 document.getElementById("id_username").autocapitalize = "none";
 
                 }
             </script>
-    </div>
-</div>
+
 
 {% endblock %}

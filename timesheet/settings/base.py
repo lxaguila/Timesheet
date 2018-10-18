@@ -123,6 +123,6 @@ DATE_INPUT_FORMATS = ['%a %b %d']
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, '../static'),)
 
-LOGIN_URL = "/report/authenticate/"
-
+LOGIN_URL = "/report/login/"
+LOGIN_REDIRECT_URL = '/report/'
 

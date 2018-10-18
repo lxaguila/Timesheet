@@ -19,5 +19,6 @@ from django.contrib import admin
 urlpatterns = [
     url('report/', include('report.urls')),
     url(r'^admin/', admin.site.urls),
+    url('accounts/', include('django.contrib.auth.urls')),
 
 ]

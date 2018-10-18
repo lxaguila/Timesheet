@@ -1,3 +1,6 @@
+
+
+
 {% extends "base.html" %}
 
 {% load staticfiles %}
@@ -20,8 +23,8 @@ Login
                 {% for field in form %}
 
                     <span>{{ field.errors }}</span>
-                <span>{{ field.label_tag }}</span>
-                    <div>{{ form.as_p }}</div>
+                    <div>{{ field.label_tag }}</div>
+                    <div>{{ field }}</div>
                     <br>
 
                 {% endfor %}
@@ -33,11 +36,13 @@ Login
             <script type="text/javascript">
                 (function ($) {
                 $(document).ready(function(){
-                $(".navbar").hide();
+                $(".navbar-fixed-top").hide();
+                $("a#a_navbar_bottom").text("SignUp");
+                $("a#a_navbar_bottom").attr("href", "/report/signup/");
                 });
                 }(jQuery));
 
-                document.onload=autocap()
+                document.ready=autocap()
                 function autocap(){
                 document.getElementById("id_username").autocapitalize = "none";
 
