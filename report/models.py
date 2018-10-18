@@ -13,7 +13,8 @@ class weekly_report(models.Model):
     sent = models.BooleanField(default=False)
     total_hours = models.FloatField(default='0')
     miscelaneous = models.FloatField(default='0')
-    comments = models.CharField(max_length=500, null=True, blank=True)
+    #comments = models.CharField(max_length=500, null=True, blank=True)
+    comments = models.TextField(max_length=500, null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('report:view_weeks')
@@ -30,7 +31,7 @@ class daily_log(models.Model):
     lunch_time = models.FloatField(default=0, blank=True, null=False)
     extra_time = models.FloatField(default=0, blank=True, null=False)
     travel_time = models.FloatField(default=0, blank=True, null=False)
-    comments = models.CharField(max_length=200)
+    comments = models.TextField(max_length=500, null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('report:view_week_update')

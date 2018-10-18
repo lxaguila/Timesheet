@@ -4,11 +4,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from .models import daily_log, weekly_report
-from .forms import UserForm
 from django.shortcuts import HttpResponseRedirect
 from django.http import Http404
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from django.contrib.auth.forms import UserCreationForm
 
 
 class CreateDay(CreateView):
@@ -43,8 +41,6 @@ class UpdateDay(UpdateView):
         user_id = weekly_report.objects.filter(author=self.request.user)
         id = (user_id.values_list('id', flat=True)[0])
         return daily_log.objects.filter(week=id)
-
-
 
     def get_form(self, form_class=None):
         form = super(UpdateView, self).get_form()
@@ -126,6 +122,7 @@ class UpdateWeek(UpdateView):
     model = weekly_report
     fields = ['name', 'sent', 'miscelaneous', 'comments']
 
+
     def get_form(self, form_class=None):
         form = super(UpdateWeek, self).get_form()
         form.fields['name'].widget.attrs.update({'id': 'datepicker', 'autocomplete': 'off', 'class': 'form-control'})
@@ -133,6 +130,12 @@ class UpdateWeek(UpdateView):
         form.fields['miscelaneous'].widget.attrs.update({'class': 'form-control'})
         form.fields['comments'].widget.attrs.update({'class': 'form-control'})
         return form
+
+    def get_context_data(self):
+        add_context = {'week_id': self.kwargs['pk']}
+        ctx = super(UpdateView, self).get_context_data()
+        ctx.update(add_context)
+        return ctx
 
     def get_queryset(self):
         return weekly_report.objects.filter(author=self.request.user)

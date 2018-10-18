@@ -11,6 +11,11 @@ a {
 
 }
 
+textarea {
+    rows: 4;
+
+}
+
 .form-control {
     padding: 5px;
     margin-bottom: 10px !important;
