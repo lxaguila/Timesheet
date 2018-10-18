@@ -14,6 +14,9 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     {% block script %}{% endblock %}
 
     <head>
@@ -62,4 +65,40 @@
         </div>
 
     </body>
+
+    <script>
+
+function custom_alert( message, title ) {
+
+    event.preventDefault();
+
+    if ( !title )
+        title = 'Alert';
+
+    if ( !message )
+        message = 'No Message to Display.';
+
+    $('<div></div>').html( message ).dialog({
+        title: title,
+        resizable: false,
+        modal: true,
+        buttons: {
+            'Yes': function() {
+            $( "#form_main" ).submit();
+            $(this).dialog("close");
+
+            },
+            'No': function() {
+            $(this).dialog("close");
+            }
+        },
+        close: function (event, ui) {
+            $(this).remove();
+        }
+    });
+}
+
+</script>
+
 </html>
+

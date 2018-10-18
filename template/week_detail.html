@@ -18,7 +18,7 @@
                         <th>Action</th>
                             {% for day in days_in_week %}
 
-                        <form method="post", action="{% url 'report:view_day_delete' day.id week_id%}">
+                        <form id="form_main", method="post", action="{% url 'report:view_day_delete' day.id week_id%}", onSubmit="custom_alert('Do you want to delete {{ day.start_date }}?', 'Confirm week deletion');">
                             {% csrf_token %}
                          <input type="hidden", name="day.id", value="{{ day.id }}"/>
                         <tr>
@@ -57,13 +57,15 @@
 
 
 <script type="text/javascript">
+
 document.onload=enableAddDay({{ week_id }})
 
 function enableAddDay(week_id){
 document.getElementById("button_add_day").disabled = false;
 document.getElementById("button_add_day_href").href = "/report/day/add/{{ week_id }}";
-
 }
+
+
 </script>
 
 {% endblock %}

@@ -14,7 +14,7 @@
     <th style="width: 10%">Action</th>
 
     {% for week in object_list%}
-    <form method="post", action="{% url 'report:view_week_delete' week.id %}">
+    <form id="form_main", method="post", action="{% url 'report:view_week_delete' week.id %}", onSubmit="custom_alert('Do you want to delete {{ week.name }}?', 'Confirm week deletion');">
         {% csrf_token %}
         <input type="hidden", name="week.id", value="{{ week.id }}"/>
         <tr>
@@ -34,3 +34,5 @@
 </table>
 </div>
 {% endblock %}
+
+

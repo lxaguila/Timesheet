@@ -50,5 +50,10 @@ a {
     border: 0px;
     box-shadow: 0px;
 
+}
+
+#id_username {
+    margin-bottom: 10px;
+    box-shadow: 1px;
 
 }
