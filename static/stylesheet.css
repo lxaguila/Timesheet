@@ -29,6 +29,7 @@ textarea {
 .navbar {
     padding: 0px;
     margin-bottom: 0px !important;
+    background-color: #35cecc;
 }
 
 .navbar-btn {
