@@ -1,4 +1,245 @@
 Django==1.11.16
 
 
+django.contrib.auth Frame 21: 420 bytes on wire (3360 bits), 420 bytes captured (3360 bits) on interface 0
+Null/Loopback
+Internet Protocol Version 4, Src: 127.0.0.1, Dst: 127.0.0.1
+Transmission Control Protocol, Src Port: 8000, Dst Port: 57335, Seq: 93, Ack: 862, Len: 364
+
+Frame 21: 420 bytes on wire (3360 bits), 420 bytes captured (3360 bits) on interface 0
+
+0000   02 00 00 00 45 00 01 a0 00 00 40 00 40 06 00 00  ....E.....@.@...
+0010   7f 00 00 01 7f 00 00 01 1f 40 df f7 8a 10 34 33  .........@....43
+0020   b7 3c 0f b9 80 18 31 bc ff 94 00 00 01 01 08 0a  .<....1.........
+0030   2b f3 78 8a 2b f3 78 8a 43 6f 6e 74 65 6e 74 2d  +.x.+.x.Content-
+0040   4c 65 6e 67 74 68 3a 20 34 39 39 33 0d 0a 45 78  Length: 4993..Ex
+0050   70 69 72 65 73 3a 20 46 72 69 2c 20 31 39 20 4f  pires: Fri, 19 O
+0060   63 74 20 32 30 31 38 20 31 35 3a 32 32 3a 35 38  ct 2018 15:22:58
+0070   20 47 4d 54 0d 0a 56 61 72 79 3a 20 43 6f 6f 6b   GMT..Vary: Cook
+0080   69 65 0d 0a 43 61 63 68 65 2d 43 6f 6e 74 72 6f  ie..Cache-Contro
+0090   6c 3a 20 6e 6f 2d 63 61 63 68 65 2c 20 6e 6f 2d  l: no-cache, no-
+00a0   73 74 6f 72 65 2c 20 6d 75 73 74 2d 72 65 76 61  store, must-reva
+00b0   6c 69 64 61 74 65 2c 20 6d 61 78 2d 61 67 65 3d  lidate, max-age=
+00c0   30 0d 0a 58 2d 46 72 61 6d 65 2d 4f 70 74 69 6f  0..X-Frame-Optio
+00d0   6e 73 3a 20 53 41 4d 45 4f 52 49 47 49 4e 0d 0a  ns: SAMEORIGIN..
+00e0   43 6f 6e 74 65 6e 74 2d 54 79 70 65 3a 20 74 65  Content-Type: te
+00f0   78 74 2f 68 74 6d 6c 3b 20 63 68 61 72 73 65 74  xt/html; charset
+0100   3d 75 74 66 2d 38 0d 0a 53 65 74 2d 43 6f 6f 6b  =utf-8..Set-Cook
+0110   69 65 3a 20 20 63 73 72 66 74 6f 6b 65 6e 3d 34  ie:  csrftoken=4
+0120   70 57 51 73 6d 6f 69 6c 54 41 6f 6d 72 71 38 48  pWQsmoilTAomrq8H
+0130   4e 57 43 4e 48 31 37 48 45 79 47 37 6b 4b 38 42  NWCNH17HEyG7kK8B
+0140   73 6a 34 49 49 4c 71 66 48 41 36 34 41 62 55 6d  sj4IILqfHA64AbUm
+0150   76 6b 6f 39 72 71 31 34 6c 4e 64 4b 62 44 34 3b  vko9rq14lNdKbD4;
+0160   20 65 78 70 69 72 65 73 3d 46 72 69 2c 20 31 38   expires=Fri, 18
+0170   2d 4f 63 74 2d 32 30 31 39 20 31 35 3a 32 32 3a  -Oct-2019 15:22:
+0180   35 38 20 47 4d 54 3b 20 4d 61 78 2d 41 67 65 3d  58 GMT; Max-Age=
+0190   33 31 34 34 39 36 30 30 3b 20 50 61 74 68 3d 2f  31449600; Path=/
+01a0   0d 0a 0d 0a                                      ....
+
+E@@@5<1
++x+x
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/static/stylesheet.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    
+
+    <head>
+
+
+        <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+            <div class="container">
+
+                <div class="navbar-header pull-left">
+                    <a href="/report/" role="button"><button onclick="location.href='/report/'" type="button" class="btn btn-default navbar-btn">Home</a>
+                </div>
+                <div class="navbar-header pull-right">
+                    <a href="/report/week/add/" role="button"><button onclick="location.href='/report/week/add/'" type="button" class="btn btn-default navbar-btn">ADD Week</a>
+                    <button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day"><a href="#" id="button_add_day_href" role="button">ADD Day</a></button>
+                </div>
+
+            </div>
+        </nav>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    </head>
+
+    <body>
+
+        <div class="container-fluid">
+
+
+            <h2>
+<div class="row">
+    <div class="col-xs-4 col-xs-offset-4">
+Login
+    </div>
+</div>
+</h2>
+
+            
+
+<div class="row">
+
+
+       
+
+
+
+
+    <div class="col-xs-4 col-xs-offset-4">
+            <form class = "form-horizontal" action = "" method="post" name="authenticate">
+                <input type='hidden' name='csrfmiddlewaretoken' value='YZKtGbxd3Elf5m5NGtI5INZDgDqkJtgOv27HWxUlXslXNvQzlb6R4xoxDkFRmk9K' />
+
+                
+
+                    <span></span>
+                    <div><label for="id_username">Username:</label></div>
+                    <div><input type="text" name="username" value="ccds" autofocus required id="id_username" maxlength="254" /></div>
+
+                
+
+                    <span></span>
+                    <div><label for="id_password">Password:</label></div>
+                    <div><input type="password" name="password" required id="id_password" /></div>
+
+                
+                <br>
+                <button type="submit">Submit</button>
+                <br>
+            </form>
+
+            <script type="text/javascript">
+                (function ($) {
+                $(document).ready(function(){
+                $(".navbar-fixed-top").hide();
+                $("#button_login").text("Sign Up");
+                $("#button_navbar_bottom").attr('onclick', "location.href='/report/signup'");
+                });
+                }(jQuery));
+
+                document.ready=autocap()
+                function autocap(){
+                document.getElementById("id_username").autocapitalize = "none";
+
+                }
+            </script>
+    </div>
+</div>
+
+
+
+            
+
+            <nav class="navbar navbar-dark bg-primary navbar-fixed-bottom">
+                <div class="container">
+                    <div class="navbar-header pull-left">
+                          <span class="navbar-text">Welcome: </span>
+                    </div>
+                    <div class="navbar-header pull-right">
+                        <button id="button_navbar_bottom" type="button" onclick="location.href='/report/signout'" class="btn btn-default navbar-btn"><span id="button_login"> Logout </span></button>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+    </body>
+
+    <script>
+
+function custom_alert( message, title ) {
+
+    event.preventDefault();
+
+    if ( !title )
+        title = 'Alert';
+
+    if ( !message )
+        message = 'No Message to Display.';
+
+    $('<div></div>').html( message ).dialog({
+        title: title,
+        resizable: false,
+        modal: true,
+        buttons: {
+            'Yes': function() {
+            $(this).dialog("close");
+            $( "#form_main" ).submit();
+
+            },
+            'No': function() {
+            $(this).dialog("close");
+            }
+        },
+        close: function (event, ui) {$(this).remove();},
+
+    });
+}
+
+
+var userAgent = navigator.userAgent
+
+if (/android/i.test(userAgent)) {
+
+(function ($) {
+
+$('input').focus( function() {
+    $('.navbar-fixed-bottom').hide();
+});
+
+$('textarea').focus( function() {
+    $('.navbar-fixed-bottom').hide();
+});
+
+$('input').blur( function() {
+    $('.navbar-fixed-bottom').show();
+});
+
+$('textarea').blur( function() {
+    $('.navbar-fixed-bottom').show();
+});
+}(jQuery));
+}
+
+</script>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+EE@@@3<19
++x+wHTTP/1.0 200 OK
+
+
+
+EY@@@3<1M
++x+xDate: Fri, 19 Oct 2018 15:22:58 GMT
 

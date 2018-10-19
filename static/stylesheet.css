@@ -46,6 +46,11 @@ textarea {
     font-size: 20px;
 }
 
+.center-div{
+     margin: 0 auto;
+     width: 100px;
+}
+
 #check_week {
     border: 0px;
     box-shadow: 0px;

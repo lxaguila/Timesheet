@@ -5,33 +5,32 @@
 
 {% load staticfiles %}
 
+<div class="center-div>
 {% block h1 %}
-<div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
 Login
-    </div>
-</div>
 {% endblock %}
+</div>
 
 {% block content %}
 
-<div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+                    <div class="center-div">
+
             <form class = "form-horizontal" action = "" method="post" name="authenticate">
                 {% csrf_token %}
 
-                {% for field in form %}
 
-                    <span>{{ field.errors }}</span>
-                    <div>{{ field.label_tag }}</div>
-                    <div>{{ field }}</div>
 
-                {% endfor %}
+                        {{ form.as_p }}
+
+
+
+
+
                 <br>
                 <button type="submit">Submit</button>
                 <br>
             </form>
-
+                </div>
             <script type="text/javascript">
                 (function ($) {
                 $(document).ready(function(){
@@ -47,7 +46,5 @@ Login
 
                 }
             </script>
-    </div>
-</div>
 
 {% endblock %}

@@ -84,16 +84,16 @@ function custom_alert( message, title ) {
         modal: true,
         buttons: {
             'Yes': function() {
-            $( "#form_main" ).submit();
             $(this).dialog("close");
+            $( "#form_main" ).submit();
 
             },
             'No': function() {
             $(this).dialog("close");
             }
         },
-         open: function() {$(this).siblings('.ui-dialog-buttonpane').find("button:contains('No')").focus();},
-        close: function (event, ui) {$(this).remove();}
+        close: function (event, ui) {$(this).remove();},
+
     });
 }
 
