@@ -36,8 +36,8 @@ Login
                 (function ($) {
                 $(document).ready(function(){
                 $(".navbar-fixed-top").hide();
-                $("a#a_navbar_bottom").text("SignUp");
-                $("a#a_navbar_bottom").attr("href", "/report/signup/");
+                $("#button_login").text("Sign Up");
+                $("#button_navbar_bottom").attr('onclick', "location.href='/report/signup'");
                 });
                 }(jQuery));
 
