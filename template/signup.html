@@ -6,15 +6,16 @@
 {% load staticfiles %}
 
 {% block h1 %}
-<div class="row">
-    <div class="col-xs-4 col-xs-offset-4">
+
+    <div class="center-div">
 Signup
     </div>
-</div>
+
 {% endblock %}
 
 {% block content %}
 
+    <div class="center-div">
             <form class = "form-horizontal" action = "" method="post" name="authenticate">
                 {% csrf_token %}
 
@@ -30,6 +31,7 @@ Signup
                 <button type="submit">Submit</button>
                 <br>
             </form>
+    </div>
 
             <script type="text/javascript">
                 (function ($) {
