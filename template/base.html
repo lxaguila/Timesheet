@@ -21,21 +21,39 @@
 
     <head>
 
+        {% if user.is_authenticated %}
 
-        <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
-            <div class="container">
+            <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+                <div class="container">
 
-                <div class="navbar-header pull-left">
-                    <a href="/report/" role="button"><button onclick="location.href='/report/'" type="button" class="btn btn-default navbar-btn">Home</a>
+                    <div class="navbar-header pull-left">
+                        <a href="/report/" role="button"><button onclick="location.href='/report/'" type="button" class="btn btn-default navbar-btn">Home</a>
+                    </div>
+                    <div class="navbar-header pull-right">
+                        <a href="/report/week/add/" role="button"><button onclick="location.href='/report/week/add/'" type="button" class="btn btn-default navbar-btn">ADD Week</a>
+                        <button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day"><a href="#" id="button_add_day_href" role="button">ADD Day</a></button>
+                    </div>
+
                 </div>
-                <div class="navbar-header pull-right">
-                    <a href="/report/week/add/" role="button"><button onclick="location.href='/report/week/add/'" type="button" class="btn btn-default navbar-btn">ADD Week</a>
-                    <button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day"><a href="#" id="button_add_day_href" role="button">ADD Day</a></button>
+            </nav>
+
+        {% else %}
+
+            <nav class="navbar navbar-dark bg-primary navbar-fixed-top">
+                <div class="container">
+
+                    <div class="navbar-header pull-left">
+                        <a href="/report/login" role="button"><button onclick="location.href='/report/login'" type="button" class="btn btn-default navbar-btn">Login</a>
+                    </div>
+                    <div class="navbar-header pull-right">
+                        <a href="/report/signup/" role="button"><button onclick="location.href='/report/signup/'" type="button" class="btn btn-default navbar-btn">SignUp</a>
+                    </div>
+
                 </div>
+            </nav>
 
-            </div>
-        </nav>
-
+        {% endif %}
+        
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     </head>
@@ -51,16 +69,6 @@
 
             {% block footer %}{% endblock %}
 
-            <nav class="navbar navbar-dark bg-primary navbar-fixed-bottom">
-                <div class="container">
-                    <div class="navbar-header pull-left">
-                          <span class="navbar-text">Welcome: {{ user.get_username }}</span>
-                    </div>
-                    <div class="navbar-header pull-right">
-                        <button id="button_navbar_bottom" type="button" onclick="location.href='/report/signout'" class="btn btn-default navbar-btn"><span id="button_login"> Logout </span></button>
-                    </div>
-                </div>
-            </nav>
 
         </div>
 
@@ -95,31 +103,6 @@ function custom_alert( message, title ) {
         close: function (event, ui) {$(this).remove();},
 
     });
-}
-
-
-var userAgent = navigator.userAgent
-
-if (/android/i.test(userAgent)) {
-
-(function ($) {
-
-$('input').focus( function() {
-    $('.navbar-fixed-bottom').hide();
-});
-
-$('textarea').focus( function() {
-    $('.navbar-fixed-bottom').hide();
-});
-
-$('input').blur( function() {
-    $('.navbar-fixed-bottom').show();
-});
-
-$('textarea').blur( function() {
-    $('.navbar-fixed-bottom').show();
-});
-}(jQuery));
 }
 
 </script>
