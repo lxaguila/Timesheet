@@ -148,30 +148,25 @@ class UpdateWeek(UpdateView):
 
 def WeekDetailView(request, pk):
 
-    hours = 0
-
-    week = weekly_report.objects.filter(id=pk, author=request.user)
-
-    if week:
-
-        days_in_week = daily_log.objects.filter(week=pk)
-
-        for item in week:
-            name = item.name
-            sent = item.sent
-            week_id = item.id
-            miscelaneous = item.miscelaneous
-            comments = item.comments
-
-        for day in days_in_week:
-            hours += day.hours_worked
-
-        updated_hours = weekly_report.objects.get(id=pk)
-        updated_hours.total_hours = hours
-        updated_hours.save()
-
-        context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
-        return render(request, 'week_detail.html', context)
-
-    else:
+    try:
+        week = weekly_report.objects.get(id=pk, author=request.user)
+    except:
         raise Http404()
+
+    name = week.name
+    sent = week.sent
+    week_id = week.id
+    miscelaneous = week.miscelaneous
+    comments = week.comments
+    hours = week.miscelaneous
+
+    days_in_week = daily_log.objects.filter(week=week_id)
+
+    for day in days_in_week:
+        hours += day.hours_worked
+
+    week.total_hours = hours
+    week.save()
+
+    context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+    return render(request, 'week_detail.html', context)
