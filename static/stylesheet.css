@@ -8,12 +8,10 @@ body {
 a {
     padding-top: 4px;
     padding-bottom: 5px;
-
 }
 
 textarea {
     height: 8em !important;
-
 }
 
 .form-control {
@@ -37,31 +35,23 @@ textarea {
     margin-left: 4px;
     width: 90px !important;
     height: 35px;
-
     }
 
 .btn-primary{
-
     width: 90px !important;
-
 }
-
 
 .navbar-text{
     margin-left: 4px;
     font-size: 20px;
-
 }
-
 
 #check_week {
     border: 0px;
     box-shadow: 0px;
-
 }
 
 #id_username {
     margin-bottom: 10px;
     box-shadow: 1px;
-
 }
