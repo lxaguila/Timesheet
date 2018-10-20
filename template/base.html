@@ -27,11 +27,11 @@
                 <div class="container">
 
                     <div class="navbar-header pull-left">
-                        <a href="/report/" role="button"><button onclick="location.href='/report/'" type="button" class="btn btn-default navbar-btn">Home</a>
+                        <button onclick="location.href='/report/'" type="button" class="btn btn-default navbar-btn">Home</button>
                     </div>
                     <div class="navbar-header pull-right">
-                        <a href="/report/week/add/" role="button"><button onclick="location.href='/report/week/add/'" type="button" class="btn btn-default navbar-btn">ADD Week</a>
-                        <button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day"><a href="#" id="button_add_day_href" role="button">ADD Day</a></button>
+                        <button onclick="location.href='/report/week/add/'" type="button" class="btn btn-default navbar-btn"><span id="button_add_week">Add Week</span></button>
+                        <button type="button" class="btn btn-default navbar-btn" disabled="true" id="button_add_day"><span>Add Day</span></button>
                     </div>
 
                 </div>
@@ -54,10 +54,10 @@
                 <div class="container">
 
                     <div class="navbar-header pull-left">
-                        <a href="/report/login" role="button"><button onclick="location.href='/report/login'" type="button" class="btn btn-default navbar-btn">Login</a>
+                        <button onclick="location.href='/report/login'" type="button" class="btn btn-default navbar-btn"><span>Login</span></button>
                     </div>
                     <div class="navbar-header pull-right">
-                        <a href="/report/signup/" role="button"><button onclick="location.href='/report/signup/'" type="button" class="btn btn-default navbar-btn">SignUp</a>
+                        <button onclick="location.href='/report/signup/'" type="button" class="btn btn-default navbar-btn"><span>SignUp</span></button>
                     </div>
 
                 </div>
@@ -88,35 +88,6 @@
     </body>
 
     <script>
-
-function custom_alert( message, title ) {
-
-    event.preventDefault();
-
-    if ( !title )
-        title = 'Alert';
-
-    if ( !message )
-        message = 'No Message to Display.';
-
-    $('<div></div>').html( message ).dialog({
-        title: title,
-        resizable: false,
-        modal: true,
-        buttons: {
-            'Yes': function() {
-            $(this).dialog("close");
-            $( "#form_main" ).submit();
-
-            },
-            'No': function() {
-            $(this).dialog("close");
-            }
-        },
-        close: function (event, ui) {$(this).remove();},
-
-    });
-}
 
 var userAgent = navigator.userAgent
 if (/android/i.test(userAgent)) {
