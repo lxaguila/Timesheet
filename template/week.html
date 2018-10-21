@@ -14,7 +14,7 @@
     <th style="width: 10%">Action</th>
 
     {% for week in object_list%}
-    <form name="form_main" id="form_main{{ week.id }}",method="post",action="{% url 'report:view_week_delete' week.id %}",onsubmit="">
+    <form name="form_main" id="form_main{{ week.id }}" method="post" action="{% url 'report:view_week_delete' week.id %}" onsubmit="">
         {% csrf_token %}
         <input type="hidden", name="week.id", value="{{ week.id }}"/>
         <tr>
