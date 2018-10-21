@@ -14,7 +14,7 @@
     <th style="width: 10%">Action</th>
 
     {% for week in object_list%}
-    <form id="form_main{{ week.id }}",method="post",action="{% url 'report:view_week_delete' week.id %}",onsubmit="">
+    <form name="form_main" id="form_main{{ week.id }}",method="post",action="{% url 'report:view_week_delete' week.id %}",onsubmit="">
         {% csrf_token %}
         <input type="hidden", name="week.id", value="{{ week.id }}"/>
         <tr>
@@ -23,7 +23,7 @@
             <td style="cursor:pointer" onclick="location.href='/report/week/{{week.pk}}'">{{week.total_hours}}</td>
             <td style="cursor:pointer" onclick="location.href='/report/week/{{week.pk}}'">{{week.sent}}</td>
             <td >
-                <button type="submit", class="btn btn-default btn-s" onclick="event.preventDefault();$('<div></div>').html('Do you want to delete {{week.name}}?').dialog({title: 'Confirm', resizable: false, modal: true,buttons: {'Yes': function() {$(this).dialog('close');$('#form_main{{ week.id }}').submit();},'No': function() {$(this).dialog('close');}},close: function (event, ui) {$(this).remove();},});">
+                <button id="button_delete" type="submit", class="btn btn-default btn-s" onclick="event.preventDefault();$('<div></div>').html('Do you want to delete {{week.name}}?').dialog({title: 'Confirm', resizable: false, modal: true,buttons: {'Yes': function() {$(this).dialog('close');$('#form_main{{ week.id }}').submit();},'No': function() {$(this).dialog('close');}},close: function (event, ui) {$(this).remove();},});">
                     <span class="glyphicon glyphicon-trash"></span>
 
                 </button>
