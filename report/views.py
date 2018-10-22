@@ -188,4 +188,4 @@ def WeekDetailView(request, pk):
 def printed(request):
 
     from weasyprint import HTML, CSS
-    HTML('/report/week/33/?print=yes').write_pdf('./test.pdf')
+    HTML('/report/week/32/?print=yes').write_pdf('./test.pdf')
