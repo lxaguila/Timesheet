@@ -187,5 +187,5 @@ def WeekDetailView(request, pk):
 
 def printed(request):
 
-    from weasyprint import HTML, CSS
-    HTML('/report/week/32/?print=yes').write_pdf('./test.pdf')
+    from weasyprint import HTML
+    HTML('http://127.0.0.1:8000/report/week/32/?print=yes').write_pdf('./test.pdf')
