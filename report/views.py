@@ -8,7 +8,8 @@ from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from report.forms import SignUpForm
 from django.template.loader import render_to_string, get_template
-from weasyprint import HTML
+from weasyprint import HTML, CSS
+from django.conf import settings
 
 
 
@@ -179,32 +180,15 @@ def WeekDetailView(request, pk):
 
     if print_option == "yes":
         context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
-
         content = render_to_string('print_week.html', context)
-        with open('./template/rep_temp.html', 'w') as static_file:
-            static_file.write(content)
-        html_template = get_template('rep_temp.html')
-        pdf_file = HTML(string=content).write_pdf()
-
+        pdf_file = HTML(string=content).write_pdf(stylesheets=[CSS(settings.STATIC_URL + 'stylesheet.css')])
         response = HttpResponse(pdf_file, content_type='application/pdf')
-
         return response
-
-
 
     else:
         context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
 
-
-def printed(request):
-
-    html_template = get_template('rep_temp.html')
-    print(html_template)
-    pdf_file = HTML(string=html_template).write_pdf()
-    response = HttpResponse(pdf_file, content_type='application/pdf')
-    response['Content-Disposition'] = 'filename="home_page.pdf"'
-    return response
 
 
 
