@@ -199,11 +199,9 @@ def WeekDetailView(request, pk):
 
 def printed(request):
 
-    from weasyprint import HTML
-    HTML('http://127.0.0.1:8000/report/week/32/?print=yes').write_pdf('./test.pdf')
-
-    with open('./test.pdf', 'r') as pdf:
-        response = HttpResponse(pdf.read(), content_type='application/pdf')
-        #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
-        #return response
+    html_template = get_template('rep_temp.html')
+    pdf_file = HTML(string=html_template).write_pdf()
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="home_page.pdf"'
+    return response
 
