@@ -187,10 +187,10 @@ def WeekDetailView(request, pk):
         #return response
 
         with open('./tmp.pdf', 'r') as pdf:
-            response = HttpResponse(pdf.read(), mimetype='application/pdf')
+            response = HttpResponse(pdf.read(), content_type='application/pdf')
             pdf.closed
             return response
-        
+
 
     else:
         context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
