@@ -79,6 +79,7 @@ table.blueTable td, table.blueTable th {
 }
 table.blueTable tbody td {
   font-size: 16px;
+  text-align: center;
 }
 
 .tdcomment {
