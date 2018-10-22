@@ -67,7 +67,6 @@ textarea {
 }
 
 #tdcomment {
-  width: 33% !important;
   text-align: left;
 }
 
@@ -133,6 +132,15 @@ table.blueTable tfoot .links a{
 
 .tdfooter{
   font-size: 25px;
+
+}
+
+.th-print-1 .th-print-1 .th-print-1 .th-print-1 .th-print-1 .th-print-1{
+width: 12%
+}
+
+.th-print-7{
+width: 28%
 
 }
 
