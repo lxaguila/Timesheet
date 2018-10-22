@@ -191,7 +191,7 @@ def printed(request):
     HTML('http://127.0.0.1:8000/report/week/32/?print=yes').write_pdf('./test.pdf')
 
     with open('./test.pdf', 'r') as pdf:
-        response = HttpResponse(pdf.read(), mimetype='application/pdf')
+        response = HttpResponse(pdf.read(), content_type='application/pdf')
         #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
         return response
 
