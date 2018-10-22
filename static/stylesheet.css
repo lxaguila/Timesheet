@@ -84,7 +84,7 @@ table.blueTable tbody td {
 
 .tdcomment {
   width: 34% !important;
-  text-align: left;
+  text-align: left important!;
 }
 
 table.blueTable tr:nth-child(even) {
