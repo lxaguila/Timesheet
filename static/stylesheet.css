@@ -66,6 +66,11 @@ textarea {
     box-shadow: 1px;
 }
 
+#tdcomment {
+  width: 34% !important;
+  text-align: left important!;
+}
+
 table.blueTable {
   border: 1px solid #1C6EA4;
   background-color: #EEEEEE;
@@ -80,11 +85,6 @@ table.blueTable td, table.blueTable th {
 table.blueTable tbody td {
   font-size: 16px;
   text-align: center;
-}
-
-#tdcomment {
-  width: 34% !important;
-  text-align: left important!;
 }
 
 table.blueTable tr:nth-child(even) {
