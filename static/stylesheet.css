@@ -82,7 +82,7 @@ table.blueTable tbody td {
   text-align: center;
 }
 
-.tdcomment {
+#tdcomment {
   width: 34% !important;
   text-align: left important!;
 }
