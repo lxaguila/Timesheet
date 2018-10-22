@@ -24,7 +24,7 @@
             <tbody>
                 {% for day in days_in_week %}
             <tr class="tr-print" >
-                <td class="td-print">{{ day.start_date|date:"D M d Y" }}</td>
+                <td class="td-print">{{ day.start_date|date:"D M d" }}</td>
                 <td class="td-print">{{ day.start_time }}</td>
                 <td class="td-print">{{ day.end_time }}</td>
                 <td class="td-print">{{ day.lunch_time }}</td>
