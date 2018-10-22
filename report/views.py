@@ -184,6 +184,9 @@ def WeekDetailView(request, pk):
         HTML(string=content).write_pdf('./tmp.pdf', stylesheets=[CSS('./static/stylesheet.css')])
 
         response = HttpResponse('./tmp.pdf', content_type='application/pdf')
+
+        response['Content-Disposition'] = './tmp.pdf"'
+        
         return response
 
     else:
