@@ -27,5 +27,7 @@ urlpatterns = [
     url(r'^signup/$', report_views.signup, name='signup'),
     url(r'^login/$', auth_views.login, name='login'),
 
+    url(r'^print/$', views.printed, name='login'),
+
 
     ]

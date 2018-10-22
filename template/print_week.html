@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+
+    <link rel="stylesheet" href="/static/stylesheet.css">
+
+    <body>
+
+    <h1>Weekly report for: {{ user.get_username }}</h1>
+
+    <h1>{{ name }}</h1>
+
+        <table class = "blueTable">
+            <thead>
+                <tr>
+                    <th class="th-print">DATE</th>
+                    <th class="th-print">Check IN</th>
+                    <th class="th-print">Check OUT</th>
+                    <th class="th-print">Lunch</th>
+                    <th class="th-print">Extra</th>
+                    <th class="th-print">Total Hours</th>
+                    <th class="th-print">Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for day in days_in_week %}
+            <tr class="tr-print" >
+                <td class="td-print">{{ day.start_date|date:"D M d Y" }}</td>
+                <td class="td-print">{{ day.start_time }}</td>
+                <td class="td-print">{{ day.end_time }}</td>
+                <td class="td-print">{{ day.lunch_time }}</td>
+                <td class="td-print">{{ day.extra_time }}</td>
+                <td class="td-print">{{ day.hours_worked }}</td>
+                <td class="tdcomment">{{ day.comments }}</td>
+            </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+
+        <table>
+            <tr><td class="tdfooter">Total Hours: {{ hours }}</td></tr>
+            <tr><td class="tdfooter">Additional expenses (USD): {{ miscelaneous }}</td></tr>
+            <tr><td class="tdfooter">Comments: {{ comments }}</td></tr>
+        </table>
+
+    </body>
+
+</html>

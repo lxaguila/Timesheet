@@ -7,6 +7,8 @@ from .models import daily_log, weekly_report
 from django.shortcuts import HttpResponseRedirect
 from django.http import Http404
 from report.forms import SignUpForm
+from weasyprint import HTML
+
 
 
 class CreateDay(CreateView):
@@ -153,6 +155,12 @@ def WeekDetailView(request, pk):
     except:
         raise Http404()
 
+    try:
+        print_option = (request.GET.get('print', ''))
+    except:
+        print('noprint')
+
+
     name = week.name
     sent = week.sent
     week_id = week.id
@@ -168,5 +176,16 @@ def WeekDetailView(request, pk):
     week.total_hours = hours
     week.save()
 
-    context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
-    return render(request, 'week_detail.html', context)
+    if print_option == "yes":
+        context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        return render(request, 'print_week.html', context)
+
+    else:
+        context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        return render(request, 'week_detail.html', context)
+
+
+def printed(request):
+
+    from weasyprint import HTML, CSS
+    HTML('/report/week/33/?print=yes').write_pdf('./test.pdf')
