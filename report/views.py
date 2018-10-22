@@ -192,6 +192,6 @@ def printed(request):
 
     with open('./test.pdf', 'r') as pdf:
         response = HttpResponse(pdf.read(), mimetype='application/pdf')
-        response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+        #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
         return response
 
