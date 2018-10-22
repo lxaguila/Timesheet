@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from .models import daily_log, weekly_report
-from django.shortcuts import HttpResponseRedirect
+from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from report.forms import SignUpForm
 from weasyprint import HTML
@@ -189,3 +189,9 @@ def printed(request):
 
     from weasyprint import HTML
     HTML('http://127.0.0.1:8000/report/week/32/?print=yes').write_pdf('./test.pdf')
+
+    with open('./test.pdf', 'r') as pdf:
+        response = HttpResponse(pdf.read(), mimetype='application/pdf')
+        response['Content-Disposition'] = 'inline;filename=some_file.pdf'
+        return response
+
