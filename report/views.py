@@ -186,7 +186,7 @@ def WeekDetailView(request, pk):
         html_template = get_template('rep_temp.html')
         pdf_file = HTML(string=content).write_pdf()
 
-        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+        response = HttpResponse(pdf_file, content_type='application/pdf')
 
         return response
 
@@ -205,4 +205,6 @@ def printed(request):
     response = HttpResponse(pdf_file, content_type='application/pdf')
     response['Content-Disposition'] = 'filename="home_page.pdf"'
     return response
+
+
 
