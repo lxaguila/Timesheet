@@ -67,7 +67,7 @@ textarea {
 }
 
 #tdcomment {
-  width: 14% !important;
+  width: 33% !important;
   text-align: left important!;
 }
 
@@ -75,7 +75,6 @@ table.blueTable {
   border: 1px solid #1C6EA4;
   background-color: #EEEEEE;
   width: 100%;
-  text-align: left;
   border-collapse: collapse;
 }
 table.blueTable td, table.blueTable th {
