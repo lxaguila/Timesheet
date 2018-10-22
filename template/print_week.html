@@ -31,8 +31,18 @@
                 <td class="td-print">{{ day.extra_time }}</td>
                 <td class="td-print">{{ day.hours_worked }}</td>
                 <td id="tdcomment">{{ day.comments }}</td>
-            </tr>
                 {% endfor %}
+
+            </tr>
+
+
+            <tr>
+
+                <td colspan="4"></td>
+                <td colspan="5">{{ hours }}</td>
+
+            </tr>
+
             </tbody>
         </table>
         <br>
