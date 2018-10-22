@@ -162,7 +162,7 @@ def WeekDetailView(request, pk):
     except:
         print('noprint')
 
-
+    user = request.user
     name = week.name
     sent = week.sent
     week_id = week.id
@@ -179,7 +179,7 @@ def WeekDetailView(request, pk):
     week.save()
 
     if print_option == "yes":
-        context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         content = render_to_string('print_week.html', context)
         HTML(string=content).write_pdf('./tmp.pdf', stylesheets=[CSS('./static/stylesheet.css')])
 
