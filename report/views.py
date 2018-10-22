@@ -7,6 +7,7 @@ from .models import daily_log, weekly_report
 from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from report.forms import SignUpForm
+from django.template.loader import render_to_string, get_template
 from weasyprint import HTML
 
 
@@ -178,7 +179,18 @@ def WeekDetailView(request, pk):
 
     if print_option == "yes":
         context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
-        return render(request, 'print_week.html', context)
+
+        content = render_to_string('print_week.html', context)
+        with open('rep_temp.html', 'w') as static_file:
+            static_file.write(content)
+        html_template = get_template('templates/home_page.html')
+        pdf_file = HTML(string=html_template).write_pdf()
+
+        response = HttpResponse(pdf_file.read(), content_type='application/pdf')
+
+        return response
+
+
 
     else:
         context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
@@ -193,5 +205,5 @@ def printed(request):
     with open('./test.pdf', 'r') as pdf:
         response = HttpResponse(pdf.read(), content_type='application/pdf')
         #response['Content-Disposition'] = 'inline;filename=some_file.pdf'
-        return response
+        #return response
 
