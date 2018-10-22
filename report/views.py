@@ -182,7 +182,8 @@ def WeekDetailView(request, pk):
         context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         content = render_to_string('print_week.html', context)
         pdf_file = HTML(string=content).write_pdf('./tmp.pdf', stylesheets=[CSS('./static/stylesheet.css')])
-        response = HttpResponse(pdf_file, content_type='application/pdf')
+
+        response = HttpResponse('./tmp.pdf', content_type='application/pdf')
         return response
 
     else:
