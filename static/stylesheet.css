@@ -137,6 +137,11 @@ table.blueTable tfoot .links a{
 
 }
 
+.td-print-total{
+  font-size: 20px
+  font-weight: bold;
+}
+
 .th-print-1, .th-print-1, .th-print-1, .th-print-1, .th-print-1, .th-print-1{
 width: 12%;
 }
