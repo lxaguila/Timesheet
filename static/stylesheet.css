@@ -115,6 +115,7 @@ table.blueTable tfoot {
   background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
   background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%);
   border-top: 2px solid #444444;
+  table-layout: fixed;
 }
 table.blueTable tfoot td {
   font-size: 12px;
