@@ -180,6 +180,7 @@ def WeekDetailView(request, pk):
     week.save()
 
     if action_option == "print":
+        print('jjjjjjjjjjjjjj')
         context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         content = render_to_string('print_week.html', context)
         html_read = HTML(string=content)
