@@ -187,14 +187,21 @@ def WeekDetailView(request, pk):
         result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
         response = HttpResponse(result, content_type='application/pdf')
 
+        subject = 'Where is the fault'
+        from_email = settings.EMAIL_HOST_USER
+        to_email = [from_email, 'lenin.aguilar@gmail.com']
+        contact_message = "test"
+
         email = EmailMessage(
-            'Hello',
-            'Body goes here',
-            'from@example.com',
-            'lenin.aguilar@gmail.com',
-            reply_to=[''],
-            headers={'Message-ID': 'test'},
-            )
+            subject,
+            contact_message,
+            from_email,
+            to_email,
+        )
+
+        email.send()
+
+        
 
         email.attach(filename=None, content=response,mimetype=None)
         email.send()
