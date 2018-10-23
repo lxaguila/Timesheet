@@ -199,12 +199,12 @@ def WeekDetailView(request, pk):
             to_email,
         )
 
-        email.send()
-
-
-
-        #email.attach(filename=None, content=response,mimetype=None)
         #email.send()
+
+
+
+        email.attach(filename=None, content=response,mimetype=None)
+        email.send()
         return HttpResponseRedirect('/report/week/' + str(week_id))
 
 
