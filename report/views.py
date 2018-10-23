@@ -191,10 +191,12 @@ def WeekDetailView(request, pk):
 
         html_read = HTML(string=content)
 
+        print(html_read)
+
         result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
 
 
-        response = HttpResponse(result.read(), content_type='application/pdf')
+        response = HttpResponse(result, content_type='application/pdf')
         return response
 
     else:
