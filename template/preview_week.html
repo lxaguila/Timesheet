@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% extends "print_week.html" %}
+
 
 {% block content %}
 
-{% block div %}
+{% include '_print_week.html' %}
+
 
 <div class="col-xs-1 col-xs-offset-3"><a href="/report/week/{{ week_id }}/?print=preview"><button class="btn btn-primary">Preview</button></a></div>
 
 
-{% endblock %}
 {% endblock %}
