@@ -27,8 +27,8 @@
                 <td class="td-print">{{ day.start_date|date:"D M d" }}</td>
                 <td class="td-print">{{ day.start_time|time:"h:i a" }}</td>
                 <td class="td-print">{{ day.end_time|time:"h:i a" }}</td>
-                <td class="td-print">{{ day.lunch_time|time:"h:i a" }}</td>
-                <td class="td-print">{{ day.extra_time|time:"h:i a" }}</td>
+                <td class="td-print">{{ day.lunch_time }}</td>
+                <td class="td-print">{{ day.extra_time }}</td>
                 <td class="td-print">{{ day.hours_worked }}</td>
                 <td id="tdcomment">{{ day.comments }}</td>
                 {% endfor %}
