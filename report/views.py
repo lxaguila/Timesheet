@@ -7,8 +7,9 @@ from .models import daily_log, weekly_report
 from django.shortcuts import HttpResponseRedirect, HttpResponse
 from django.http import Http404
 from report.forms import SignUpForm
-from django.template.loader import render_to_string, get_template
+from django.template.loader import render_to_string
 from weasyprint import HTML, CSS
+from django.core.mail import EmailMessage
 from django.conf import settings
 
 
@@ -184,6 +185,26 @@ def WeekDetailView(request, pk):
         html_read = HTML(string=content)
         result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
         response = HttpResponse(result, content_type='application/pdf')
+
+        email = EmailMessage(
+            'Hello',
+            'Body goes here',
+            'from@example.com',
+            'lenin.aguilar@gmail.com',
+            reply_to=[''],
+            headers={'Message-ID': 'test'},
+            )
+
+        email.attach(filename=None, content=response,mimetype=None)
+        email.send()
+        return HttpResponseRedirect('/report/week/' + week_id)
+
+
+
+
+
+
+
         return response
 
     elif action_option == "preview":
