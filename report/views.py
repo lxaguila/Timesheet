@@ -187,6 +187,7 @@ def WeekDetailView(request, pk):
         return response
 
     elif print_option == "test":
+        print('eeeeeeeeee')
         context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'print_week.html', context)
 
