@@ -191,7 +191,7 @@ def WeekDetailView(request, pk):
 
         html_read = HTML(string=content)
 
-        result = html_read.write_pdf(target=None, stylesheets='./static/stylesheet.css', zoom=1, attachments=None, presentational_hints=False, font_config=None)
+        result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
 
 
         response = HttpResponse(result, content_type='application/pdf')
