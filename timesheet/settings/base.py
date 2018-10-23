@@ -126,7 +126,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, '../static'),)
 LOGIN_URL = "/report/login/"
 LOGIN_REDIRECT_URL = '/report/'
 
-EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'trackinghoursapp@gmail.com'
