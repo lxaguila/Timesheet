@@ -75,7 +75,7 @@ table.blueTable {
   background-color: #EEEEEE;
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+
 }
 table.blueTable td, table.blueTable th {
   border: 1px solid #AAAAAA;
