@@ -180,17 +180,15 @@ def WeekDetailView(request, pk):
     week.save()
 
     if action_option == "print":
-        print('jjjjjjjjjjjjjj')
         context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         content = render_to_string('print_week.html', context)
         html_read = HTML(string=content)
         result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
-        #response = HttpResponse(result, content_type='application/pdf')
-
-        subject = 'Where is the fault'
+        #response = HttpResponse(result, content_type='application/pdf') #use this to render to a file
+        subject = user + 'weekly report'
         from_email = settings.EMAIL_HOST_USER
-        to_email = [from_email, 'lenin.aguilar@gmail.com']
-        contact_message = "test"
+        to_email = ['lenin.aguilar@gmail.com']
+        contact_message = "Attached " + name + " report"
 
         email = EmailMessage(
             subject,
@@ -199,9 +197,7 @@ def WeekDetailView(request, pk):
             to_email,
         )
 
-        #email.send()
-
-        email.attach('test.pdf', result, mimetype=None)
+        email.attach(name + '.pdf', result, mimetype=None)
         email.send()
         return HttpResponseRedirect('/report/week/' + str(week_id))
 
