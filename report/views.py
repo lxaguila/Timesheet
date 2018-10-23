@@ -185,7 +185,7 @@ def WeekDetailView(request, pk):
         html_read = HTML(string=content)
         result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
         #response = HttpResponse(result, content_type='application/pdf') #use this to render to a file
-        subject = user + 'weekly report'
+        subject = str(user) + ' weekly report'
         from_email = settings.EMAIL_HOST_USER
         to_email = ['lenin.aguilar@gmail.com']
         contact_message = "Attached " + name + " report"
@@ -197,7 +197,7 @@ def WeekDetailView(request, pk):
             to_email,
         )
 
-        email.attach(name + '.pdf', result, mimetype=None)
+        email.attach(str(name) + '.pdf', result, mimetype=None)
         email.send()
         return HttpResponseRedirect('/report/week/' + str(week_id))
 
