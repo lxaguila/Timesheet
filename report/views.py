@@ -4,14 +4,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
 from .models import daily_log, weekly_report
-from django.shortcuts import HttpResponseRedirect, HttpResponse
+from django.shortcuts import HttpResponseRedirect
 from django.http import Http404
 from report.forms import SignUpForm
 from django.template.loader import render_to_string
 from weasyprint import HTML, CSS
 from django.core.mail import EmailMessage
 from django.conf import settings
-
 
 
 class CreateDay(CreateView):
@@ -84,7 +83,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('/report/')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
@@ -201,12 +200,6 @@ def WeekDetailView(request, pk):
         email.send()
         return HttpResponseRedirect('/report/week/' + str(week_id))
 
-
-
-
-
-
-
         return response
 
     elif action_option == "preview":
@@ -216,7 +209,3 @@ def WeekDetailView(request, pk):
     else:
         context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
-
-
-
-

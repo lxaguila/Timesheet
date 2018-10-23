@@ -117,9 +117,6 @@ USE_TZ = True
 TIME_INPUT_FORMATS = ['%I:%M%p']
 DATE_INPUT_FORMATS = ['%a %b %d']
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, '../static'),)
 
