@@ -220,7 +220,7 @@ def WeekDetailView(request, pk):
         messages.success(request, 'email sent to: ' + user_email)
 
         week.sent = True
-        week.save
+        week.save()
 
         return render(request, 'week_detail.html', context)
 
