@@ -202,9 +202,7 @@ def WeekDetailView(request, pk):
 
         email.attach(str(name) + '.pdf', result, mimetype=None)
         email.send(fail_silently=False)
-        messages.add_message(request, messages.INFO, 'Hello world.')
         #return HttpResponseRedirect('/report/week/' + str(week_id))
-
         messages.success(request, 'Student created successfully.')
         print(request)
         return render(request, "preview_week.html")
