@@ -68,7 +68,10 @@
     Message()
 
     function Message(){
-    $('<div></div>').html('Email sent ' {{ message }}).dialog({title: 'Confirm', resizable: false, modal: true,buttons: {'Ok': function() {$(this).dialog('close');},close: function (event, ui) {$(this).remove();},});}
+    $('<div></div>').html('Email sent ' {{ message }}).dialog({title: 'Confirm',
+    resizable: false, modal: true,buttons:
+    {'Ok': function() {$(this).dialog('close');},
+    close: function (event, ui) {$(this).remove();},});}
 
 
     Message()
