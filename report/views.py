@@ -163,7 +163,7 @@ def WeekDetailView(request, pk):
     except:
         print('noprint')
 
-    email = request.user.email
+    user_email = request.user.email
     user = request.user
     name = week.name
     sent = week.sent
@@ -190,7 +190,7 @@ def WeekDetailView(request, pk):
         #response = HttpResponse(result, content_type='application/pdf') #use this to render to a file
         subject = str(user) + ' weekly report'
         from_email = settings.EMAIL_HOST_USER
-        to_email = [email]
+        to_email = [user_email]
         contact_message = "Attached " + name + " report"
 
         email = EmailMessage(
