@@ -62,14 +62,16 @@
     <script>
     {% for message in messages %}
 
-    event.preventDefault();$('<div></div>').html('Do you want to delete WEEK Of Oc).dialog({title: 'Confirm', resizable: false, modal: true,buttons: {'Yes': function() {$(this).dialog('close');$('#form_main3').submit();},'No': function() {$(this).dialog('close');}},close: function (event, ui) {$(this).remove();},});"
-
+    event.preventDefault()
     {% endfor %}
     </script>
 
 {% endif %}
 
 <script type="text/javascript">
+
+event.preventDefault();$('<div></div>').html('Do you want to delete WEEK Of Oc).dialog({title: 'Confirm', resizable: false, modal: true,buttons: {'Yes': function() {$(this).dialog('close');$('#form_main3').submit();},'No': function() {$(this).dialog('close');}},close: function (event, ui) {$(this).remove();},});"
+
 
 document.onload=enableAddDay({{ week_id }})
 
