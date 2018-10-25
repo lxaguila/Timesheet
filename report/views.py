@@ -158,10 +158,7 @@ def WeekDetailView(request, pk):
     except:
         raise Http404()
 
-    try:
-        action_option = (request.GET.get('action', ''))
-    except:
-        print('noprint')
+    action_option = (request.GET.get('action', ''))
 
     user_email = request.user.email
     user = request.user
@@ -179,16 +176,13 @@ def WeekDetailView(request, pk):
 
     week.total_hours = hours
     week.save()
-    print(user_email)
 
     context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name,
                'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
 
     if action_option == "print":
 
-        print(sent)
-
-        if sent == True:
+        if sent:
             messages.add_message(request, messages.INFO, ' Week ' + name + ' already sent')
 
             return render(request, 'week_detail.html', context)
