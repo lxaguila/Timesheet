@@ -189,7 +189,7 @@ def WeekDetailView(request, pk):
         print(sent)
 
         if sent == True:
-            messages.add_message(request, messages.INFO, 'Week ' + name + 'already sent')
+            messages.add_message(request, messages.INFO, ' Week ' + name + 'already sent')
 
             return render(request, 'week_detail.html', context)
 
@@ -218,6 +218,10 @@ def WeekDetailView(request, pk):
         email.send(fail_silently=False)
         #return HttpResponseRedirect('/report/week/' + str(week_id))
         messages.success(request, 'email sent to: ' + user_email)
+
+        week.sent = True
+        week.save
+
         return render(request, 'week_detail.html', context)
 
     elif action_option == "preview":
