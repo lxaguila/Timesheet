@@ -182,12 +182,20 @@ def WeekDetailView(request, pk):
     print(user_email)
 
     if action_option == "print":
+
+        if sent == True:
+            messages.add_message(request, 'Week ' + name + 'already sent')
+
+            return render(request, 'week_detail.html', context)
+
         storage = messages.get_messages(request)
         storage.used = True
-        context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name,
+                   'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         content = render_to_string('print_week.html', context)
         html_read = HTML(string=content)
-        result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1, attachments=None, presentational_hints=False, font_config=None)
+        result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1,
+                                     attachments=None, presentational_hints=False, font_config=None)
         #response = HttpResponse(result, content_type='application/pdf') #use this to render to a file
         subject = str(user) + ' weekly report'
         from_email = settings.EMAIL_HOST_USER
@@ -205,13 +213,14 @@ def WeekDetailView(request, pk):
         email.send(fail_silently=False)
         #return HttpResponseRedirect('/report/week/' + str(week_id))
         messages.success(request, 'email sent to: ' + user_email)
-        context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
 
     elif action_option == "preview":
-        context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent,
+                   'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'preview_week.html', context)
 
     else:
-        context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name,
+                   'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
