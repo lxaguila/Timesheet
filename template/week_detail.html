@@ -72,7 +72,7 @@
  }
 
     function Message2(){
-   $('<div></div>').html('Email sent ').dialog({
+   $('<div></div>').html('Email sent "{{ message }}"').dialog({
    title: 'Confirm', resizable: false, modal: true,buttons: {
    'Yup': function() {$(this).dialog('close');$('#form_main{{ day.id }}').submit();},
    'No': function() {$(this).dialog('close');
