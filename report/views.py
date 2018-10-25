@@ -205,7 +205,7 @@ def WeekDetailView(request, pk):
         #return HttpResponseRedirect('/report/week/' + str(week_id))
         messages.success(request, 'Student created successfully.')
         print(request)
-        return render(request, "preview_week.html",context= { 'week_id': week_id})
+        return render(request, "preview_week.html", {'week_id': week_id})
 
         #return response
 
