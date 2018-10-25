@@ -11,6 +11,7 @@ from django.template.loader import render_to_string
 from weasyprint import HTML, CSS
 from django.core.mail import EmailMessage
 from django.conf import settings
+from django.contrib import messages
 
 
 class CreateDay(CreateView):
@@ -198,8 +199,12 @@ def WeekDetailView(request, pk):
         )
 
         email.attach(str(name) + '.pdf', result, mimetype=None)
-        email.send()
-        return HttpResponseRedirect('/report/week/' + str(week_id))
+        email.send(fail_silently=False)
+        #messages.add_message(request, messages.INFO, 'Hello world.')
+        #return HttpResponseRedirect('/report/week/' + str(week_id))
+
+        messages.success(request, 'Student created successfully.')
+        return render(request, "preview_week.html")
 
         return response
 
