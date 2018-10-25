@@ -59,17 +59,13 @@
 
     {% if messages %}
 
-<ul class="messages">
+    <script>
     {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-
 
     event.preventDefault();$('<div></div>').html('Do you want to delete WEEK Of Oc).dialog({title: 'Confirm', resizable: false, modal: true,buttons: {'Yes': function() {$(this).dialog('close');$('#form_main3').submit();},'No': function() {$(this).dialog('close');}},close: function (event, ui) {$(this).remove();},});"
 
-
-
     {% endfor %}
-</ul>
+    </script>
 
 {% endif %}
 
