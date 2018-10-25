@@ -189,7 +189,7 @@ def WeekDetailView(request, pk):
         print(sent)
 
         if sent == True:
-            messages.add_message(request, messages.INFO, ' Week ' + name + 'already sent')
+            messages.add_message(request, messages.INFO, ' Week ' + name + ' already sent')
 
             return render(request, 'week_detail.html', context)
 
