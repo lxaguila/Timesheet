@@ -181,7 +181,12 @@ def WeekDetailView(request, pk):
     week.save()
     print(user_email)
 
+    context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name,
+               'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+    
     if action_option == "print":
+
+        print(sent)
 
         if sent == True:
             messages.add_message(request, 'Week ' + name + 'already sent')
