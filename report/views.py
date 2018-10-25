@@ -203,7 +203,7 @@ def WeekDetailView(request, pk):
         email.attach(str(name) + '.pdf', result, mimetype=None)
         email.send(fail_silently=False)
         #return HttpResponseRedirect('/report/week/' + str(week_id))
-        messages.success(request, 'email sent to: 'email)
+        messages.success(request, 'email sent to: ' + email)
         context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
 
