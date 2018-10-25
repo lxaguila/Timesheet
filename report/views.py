@@ -206,7 +206,7 @@ def WeekDetailView(request, pk):
         messages.success(request, 'Student created successfully.')
         return render(request, "preview_week.html")
 
-        return response
+        #return response
 
     elif action_option == "preview":
         context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
