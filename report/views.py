@@ -179,6 +179,7 @@ def WeekDetailView(request, pk):
 
     week.total_hours = hours
     week.save()
+    print(user_email)
 
     if action_option == "print":
         storage = messages.get_messages(request)
