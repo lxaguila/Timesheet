@@ -63,7 +63,11 @@
     {% for message in messages %}
 
 
-    alert("{{ message }}")
+    $("#success").dialog({
+    modal: true,
+    title: 'Payment success',
+    width: 400,
+});
 
     Message2()
 
@@ -74,8 +78,8 @@
     function Message2(){
         $('<div></div>').html('{{ message }}').dialog({
             title: 'Confirm', resizable: false, modal: true,buttons: {
-                
-                'No': function() {$(this).dialog('close');
+
+                'OK': function() {$(this).dialog('close');
    }},
    close: function (event, ui) {$(this).remove();
    },
