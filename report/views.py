@@ -204,10 +204,8 @@ def WeekDetailView(request, pk):
         email.send(fail_silently=False)
         #return HttpResponseRedirect('/report/week/' + str(week_id))
         messages.success(request, 'Student created successfully.')
-        print(request)
-        return render(request, "preview_week.html", {'week_id': week_id})
-
-        #return response
+        context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
+        return render(request, 'week_detail.html', context)
 
     elif action_option == "preview":
         context = {'user': user, 'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name, 'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
