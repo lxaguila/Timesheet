@@ -60,34 +60,24 @@
     {% if messages %}
 
     <script>
+
     {% for message in messages %}
 
-Message3()
-
-function Message3(){
-    $("success").dialog({
-    modal: true,
-    title: 'Payment success',
-    width: 400,
-});
-}
-
-
+    Message2()
 
     function Message2(){
         $('<div></div>').html('{{ message }}').dialog({
             title: 'Confirm', resizable: false, modal: true,buttons: {
 
                 'OK': function() {$(this).dialog('close');
-   }},
+                                                        }},
    close: function (event, ui) {$(this).remove();
-   },
-   });
- }
-
-
+                                 },
+                        });
+                        }
 
     {% endfor %}
+
     </script>
 
 {% endif %}
