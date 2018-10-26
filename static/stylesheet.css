@@ -66,10 +66,6 @@ textarea {
     box-shadow: 1px;
 }
 
-#tdcomment {
-  text-align: left;
-}
-
 table.blueTable {
   border: 1px solid #1C6EA4;
   background-color: #EEEEEE;
@@ -149,6 +145,10 @@ width: 11%;
 .th-print-7{
 width: 28%;
 
+}
+
+.tdcomment {
+  text-align: left;
 }
 
 #bodyprint{
