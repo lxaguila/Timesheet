@@ -62,6 +62,7 @@ class UpdateDay(UpdateView):
 
         return_url = '/report/week/' + self.kwargs['week']
         self.object = form.save()
+        updatehours(self.kwargs['week'])
         return HttpResponseRedirect(return_url)
 
 
