@@ -127,7 +127,6 @@ class UpdateWeek(UpdateView):
     model = weekly_report
     fields = ['name', 'sent', 'miscelaneous', 'comments']
 
-
     def get_form(self, form_class=None):
         form = super(UpdateWeek, self).get_form()
         form.fields['name'].widget.attrs.update({'id': 'datepicker', 'autocomplete': 'off', 'class': 'form-control'})
@@ -148,6 +147,7 @@ class UpdateWeek(UpdateView):
     def form_valid(self, form):
         return_url = '/report/week/' + self.kwargs['pk']
         self.object = form.save()
+        updatehours(self.kwargs['pk'])
         return HttpResponseRedirect(return_url)
 
 
@@ -169,13 +169,16 @@ def WeekDetailView(request, pk):
     comments = week.comments
     hours = week.miscelaneous
 
-    days_in_week = daily_log.objects.filter(week=week_id)
+    updatehours(week_id)
 
-    for day in days_in_week:
-        hours += day.hours_worked
 
-    week.total_hours = hours
-    week.save()
+    #days_in_week = daily_log.objects.filter(week=week_id)
+
+    #for day in days_in_week:
+    #    hours += day.hours_worked
+
+    #week.total_hours = hours
+    #week.save()
 
     context = {'week': week, 'comments': comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name,
                'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
@@ -228,9 +231,13 @@ def WeekDetailView(request, pk):
                    'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
 
+
 def updatehours(week_id):
-    hours = 0
+
     week = weekly_report.objects.get(id=week_id)
+
+    hours = week.miscelaneous
+
     days_in_week = daily_log.objects.filter(week=week_id)
     for day in days_in_week:
         hours += day.hours_worked
