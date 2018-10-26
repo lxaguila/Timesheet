@@ -163,6 +163,8 @@ def WeekDetailView(request, pk):
 
     action_option = (request.GET.get('action', ''))
 
+    days_in_week = daily_log.objects.filter(week=week.id)
+
     user_email = request.user.email
     user = request.user
     name = week.name
@@ -172,10 +174,7 @@ def WeekDetailView(request, pk):
     comments = week.comments
     hours = week.total_hours
 
-    updatehours(week_id)
 
-
-    days_in_week = daily_log.objects.filter(week=week_id)
 
     #for day in days_in_week:
     #    hours += day.hours_worked
