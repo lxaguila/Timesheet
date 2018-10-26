@@ -34,8 +34,8 @@ class CreateDay(CreateView):
         pk = int(self.kwargs['pk'])
         form.instance.week_id = pk
         return_url = '/report/week/' + str(pk)
-        updatehours(pk)
         self.object = form.save()
+        updatehours(pk)
         return HttpResponseRedirect(return_url)
 
 
