@@ -227,3 +227,14 @@ def WeekDetailView(request, pk):
         context = {'week':week, 'comments':comments, 'miscelaneous': miscelaneous, 'sent': sent, 'name': name,
                    'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         return render(request, 'week_detail.html', context)
+
+def updatehours(week_id):
+    hours = 0
+    week = weekly_report.objects.get(id=week_id)
+    days_in_week = daily_log.objects.filter(week=week_id)
+    for day in days_in_week:
+        hours += day.hours_worked
+
+    week.total_hours = hours
+    week.save()
+
