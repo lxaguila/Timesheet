@@ -247,4 +247,5 @@ def updatehours(week_id):
 
     week.total_hours = hours
     week.save()
+    return 'ok'
 
