@@ -242,6 +242,7 @@ def updatehours(week_id):
     days_in_week = daily_log.objects.filter(week=week_id)
     for day in days_in_week:
         hours += day.hours_worked
+        print(hours)
 
     week.total_hours = hours
     week.save()
