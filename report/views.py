@@ -168,7 +168,7 @@ def WeekDetailView(request, pk):
     week_id = week.id
     miscelaneous = week.miscelaneous
     comments = week.comments
-    hours = week.miscelaneous
+    hours = week.total_hours
 
     updatehours(week_id)
 
