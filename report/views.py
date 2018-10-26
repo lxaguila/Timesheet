@@ -73,8 +73,8 @@ class DeleteDay(DeleteView):
     def delete(self, request, *args, **kwargs):
         return_url = '/report/week/' + self.kwargs['week']
         self.object = self.get_object()
-        updatehours(self.kwargs['week'])
         self.object.delete()
+        updatehours(self.kwargs['week'])
         return HttpResponseRedirect(return_url)
 
 
