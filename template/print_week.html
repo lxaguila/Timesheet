@@ -69,7 +69,17 @@
 
     {% block div %}{% endblock %}
 
+    <div class="modal"><!-- Place at bottom of page --></div>
 
     </body>
 
 </html>
+
+<script>
+    $body = $("body");
+
+$(document).on({
+    ajaxStart: function() { $body.addClass("loading");    },
+     ajaxStop: function() { $body.removeClass("loading"); }
+});
+</script>
