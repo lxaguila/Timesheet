@@ -123,6 +123,7 @@ USE_TZ = True
 TIME_INPUT_FORMATS = ['%I:%M%p']
 DATE_INPUT_FORMATS = ['%a %b %d']
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 LOGIN_URL = "/report/login/"
