@@ -196,7 +196,7 @@ def WeekDetailView(request, pk):
         subject = str(user) + ' weekly report'
         from_email = settings.EMAIL_HOST_USER
         to_email = [user_email]
-        contact_message = "Attached " + name + " report"
+        contact_message = "Attached " + name + " report" + settings.STATICFILES_DIRS
 
         email = EmailMessage(
             subject,
