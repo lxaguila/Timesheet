@@ -190,7 +190,7 @@ def WeekDetailView(request, pk):
                    'days_in_week': days_in_week, 'hours': hours, 'week_id': week_id}
         content = render_to_string('print_week.html', context)
         html_read = HTML(string=content)
-        result = html_read.write_pdf(target=None, stylesheets=[CSS('./static/stylesheet.css')], zoom=1,
+        result = html_read.write_pdf(target=None, stylesheets=[CSS('./timesheet/static/stylesheet.css')], zoom=1,
                                      attachments=None, presentational_hints=False, font_config=None)
 
         subject = str(user) + ' weekly report'
