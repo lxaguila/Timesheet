@@ -6,9 +6,15 @@
 {% include 'print_week.html' %}
 
 
-<div class="col-xs-1 col-xs-offset-1"><a href="/report/week/{{ week_id }}/?action=print"><button class="btn btn-primary">Send</button></a></div>
+<div class="col-xs-1 col-xs-offset-1"><a href="/report/week/{{ week_id }}/?action=print"><button class="btn btn-primary"
+                                                                                                 onClick=function(){ $.get("/mockjax");});>Send</button></a></div>
 <div class="col-xs-1 col-xs-offset-3"><a href="/report/week/{{ week_id }}"><button class="btn btn-primary">Cancel</button></a></div>
 
 
 {% endblock %}
+
+
+$(document).on("click", function(){
+    $.get("/mockjax");
+});
 
