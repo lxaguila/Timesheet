@@ -48,6 +48,12 @@ class UpdateDay(UpdateView):
         id = (user_id.values_list('id', flat=True)[0])
         return daily_log.objects.filter(week=id)
 
+    def get_context_data(self):
+        add_context = {'week_id': self.kwargs['week']}
+        ctx = super(UpdateView, self).get_context_data()
+        ctx.update(add_context)
+        return ctx
+
     def get_form(self, form_class=None):
         form = super(UpdateView, self).get_form()
         form.fields['start_date'].widget.attrs.update({'id': 'datepicker', 'class': 'form-control'})
