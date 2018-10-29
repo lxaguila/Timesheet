@@ -121,7 +121,7 @@ class CreateWeek(CreateView):
     def form_valid(self, form):
          user_id = self.request.user
          form.instance.author = user_id
-         print(form.instance.week_id)
+         print(form.instance.id)
          #updatehours(self.kwargs['week'])
          return super(CreateWeek, self).form_valid(form)
 
