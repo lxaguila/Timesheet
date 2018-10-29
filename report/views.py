@@ -44,12 +44,9 @@ class UpdateDay(UpdateView):
     fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'comments']
 
     def get_queryset(self):
-        print('rrrrrrrrrrrr')
-        user_id = weekly_report.objects.filter(author=self.request.user, id = self.kwargs['week'])
-        print(user_id)
-        id = (user_id.values_list('id', flat=True)[0])
-        print(id)
-        return daily_log.objects.filter(week=id)
+        user_id = weekly_report.objects.filter(author=self.request.user, id=self.kwargs['week'])
+        week_id = (user_id.values_list('id', flat=True)[0])
+        return daily_log.objects.filter(week=week_id)
 
     def get_context_data(self):
         add_context = {'week_id': self.kwargs['week']}
