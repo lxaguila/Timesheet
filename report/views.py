@@ -50,7 +50,7 @@ class UpdateDay(UpdateView):
             return daily_log.objects.filter(week=week_id)
         except:
             raise Http404()
-        
+
     def get_context_data(self):
         add_context = {'week_id': self.kwargs['week']}
         ctx = super(UpdateView, self).get_context_data()
