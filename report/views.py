@@ -45,7 +45,9 @@ class UpdateDay(UpdateView):
 
     def get_queryset(self):
         user_id = weekly_report.objects.filter(author=self.request.user)
+        print(user_id)
         id = (user_id.values_list('id', flat=True)[0])
+        print(id)
         return daily_log.objects.filter(week=id)
 
     def get_context_data(self):
