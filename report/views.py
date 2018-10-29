@@ -45,7 +45,7 @@ class UpdateDay(UpdateView):
 
     def get_queryset(self):
         print('rrrrrrrrrrrr')
-        user_id = weekly_report.objects.filter(author=self.request.user)
+        user_id = weekly_report.objects.filter(author=self.request.user, id = self.kwargs['week'])
         print(user_id)
         id = (user_id.values_list('id', flat=True)[0])
         print(id)
