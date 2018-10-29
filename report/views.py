@@ -46,8 +46,11 @@ class UpdateDay(UpdateView):
     def get_queryset(self):
         user_id = weekly_report.objects.filter(author=self.request.user, id=self.kwargs['week'])
         week_id = (user_id.values_list('id', flat=True)[0])
-        return daily_log.objects.filter(week=week_id)
-
+        try:
+            return daily_log.objects.filter(week=week_id)
+        except:
+            raise Http404()
+        
     def get_context_data(self):
         add_context = {'week_id': self.kwargs['week']}
         ctx = super(UpdateView, self).get_context_data()
