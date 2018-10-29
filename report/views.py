@@ -46,8 +46,10 @@ class UpdateDay(UpdateView):
     def get_queryset(self):
         user_id = weekly_report.objects.filter(author=self.request.user, id=self.kwargs['week'])
         week_id = (user_id.values_list('id', flat=True)[0])
+
         try:
             return daily_log.objects.filter(week=week_id)
+        
         except:
             raise Http404()
 
