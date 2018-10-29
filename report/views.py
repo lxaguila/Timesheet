@@ -44,6 +44,7 @@ class UpdateDay(UpdateView):
     fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'comments']
 
     def get_queryset(self):
+        print('rrrrrrrrrrrr')
         user_id = weekly_report.objects.filter(author=self.request.user)
         print(user_id)
         id = (user_id.values_list('id', flat=True)[0])
