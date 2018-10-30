@@ -44,12 +44,10 @@ class UpdateDay(UpdateView):
     fields = ['start_date', 'start_time', 'end_time', 'lunch_time', 'travel_time', 'extra_time', 'comments']
 
     def get_queryset(self):
-        user_id = weekly_report.objects.filter(author=self.request.user, id=self.kwargs['week'])
-
-        if user_id is not None:
-            week_id = (user_id.values_list('id', flat=True)[0])
 
         try:
+            user_id = weekly_report.objects.filter(author=self.request.user, id=self.kwargs['week'])
+            week_id = (user_id.values_list('id', flat=True)[0])
             day = daily_log.objects.filter(week=week_id)
             return day
 
