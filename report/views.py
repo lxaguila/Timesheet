@@ -48,7 +48,8 @@ class UpdateDay(UpdateView):
         week_id = (user_id.values_list('id', flat=True)[0])
 
         try:
-            return daily_log.objects.filter(week=week_id)
+            day = daily_log.objects.filter(week=week_id)
+            return day
         
         except:
             raise Http404()
