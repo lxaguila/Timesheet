@@ -27,7 +27,7 @@
                             <td style="cursor:pointer" onclick="location.href='/report/day/{{day.pk}}/{{ week_id }}/'">{{ day.end_time }}</td>
                             <td style="cursor:pointer" onclick="location.href='/report/day/{{day.pk}}/{{ week_id }}/'">{{ day.hours_worked }}</td>
                             <td >
-                                <button type="submit", class="btn btn-default btn-s", id="ButtonDelete" onclick="ConfirmDelete(event, {{ day_id }});">
+                                <button type="submit", class="btn btn-default btn-s", id="ButtonDelete" onclick="ConfirmDelete(event, {{ day.id }});">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
                             </td>
